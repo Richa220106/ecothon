@@ -131,7 +131,8 @@ const App = () => {
       // Backend Scoring for all candidates
       let scoredRoutes;
       try {
-        const scoreResponse = await fetch('http://localhost:3001/api/score-routes', {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+        const scoreResponse = await fetch(`${apiUrl}/api/score-routes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ routes: allFoundRoutes, transportMode, isPeak })
